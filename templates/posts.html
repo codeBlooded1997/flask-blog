@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>POSTS</title>
+{% endblock %}
+
+
+{% block body %}
+<h1>All posts</h1>
+    <!-- for loop using jinja2 syntax -->
+    {% for post in posts %} <!--this syntax is for defining blocks and control flow -->
+        <h3>{{post.title}}</h3> <!--this syntax is for printing strings -->
+        <!--if statement using jinja2 syntax -->
+        {% if post.author %}
+            <h3>By: {{ post.author }}</h3>
+        {% else %}
+            <h3>By: N/A</h3>
+        {% endif %}
+        <p>{{post.content}}</p>
+    {% endfor %}
+{% endblock %}
