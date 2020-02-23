@@ -8,7 +8,7 @@ db = SQLAlchemy(app)  # links the app and database to eachother
 
 
 # MODEL
-class BlogPosts(db.Model):
+class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -35,15 +35,18 @@ def index():
 
 @app.route('/posts', methods=['GET', 'POST'])
 def posts():
-    if request.method == 'Post':
+    if request.method == 'POST':
+        print('if is running')
         post_title = request.form['title']
-        post_content = request.form['contetnt']
-        new_post = BlogPosts(title=post_title, content=post_content, author='Kareyo')   # creating postst from inputs to save in db
+        post_content = request.form['content']
+        new_post = BlogPost(title=post_title, content=post_content, author='Kareyo')   # creating postst from inputs to save in db
+
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
     else:
-        all_posts = BlogPosts.query.order_by(BlogPosts.date_posted).all()   # reading posts form db
+        all_posts = BlogPost.query.order_by(BlogPost.date_posted).all()   # reading posts form db
+        print('else is running')
         return render_template('posts.html', posts=all_posts)   # sending to front-end
 
 
