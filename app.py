@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+# Defining app object
 app = Flask(__name__)  # created app
+# Specifying configuration for app.
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///posts.db"  # configuring setting required for database and defining which database are we using
 db = SQLAlchemy(app)  # links the app and database to eachother
 
