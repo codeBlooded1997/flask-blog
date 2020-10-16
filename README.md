@@ -1,2 +1,2 @@
 # flask-blog
- this is my first flask based web app
+Personal Blog Built in Flask Framework
